@@ -9,10 +9,10 @@ let board_address = '새 게시판 주소'; // 라우터 이름과 같아야 합
 
 /* 새 게시판 만들기
 1. 이 라우터 파일과 같은 파일을 만들고 app.js와 연결합니다.
-2. Myboard_board_structure와 구조가 같은 스키마를 만듭니다.
-3. 데이터베이스 정보를 /public/javascript/MySqlHandler.js와 /config/DBset.json에 추가합니다.
+2. DB상에 Myboard_board_structure와 구조가 같은 스키마를 만듭니다.
+3. 데이터베이스 정보를 /serverside_functions/MySqlHandler.js와 /config/DBset.json에 추가합니다.
 4. 복사한 라우터 내의 'DBname' 부분을 전부 MySqlHandler.js 파일 내에 설정된 연결할 DB 이름으로 수정합니다.
-5. 게시판 이름과 주소를 설정하고, /public/views/layout.jade 내에 연결 링크를 생성합니다.
+5. 게시판 이름과 주소를 설정하고, /public/views/layout.jade 내에 연결 링크를 생성하여 접근할 수 있게 합니다.
 */
 
 // 글 목록 페이지
