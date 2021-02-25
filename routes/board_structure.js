@@ -97,9 +97,9 @@ router.post('/write', function(req, res) {
           if(err) {throw err}
           else {
             alert.green(res, '글이 작성되었습니다');
+            res.redirect(`/${board_address}/list/1`)
           }
         });
-  res.redirect(`/${board_address}/list/1`)
 });
 
 // 글 내용 보기 페이지
