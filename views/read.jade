@@ -1,0 +1,87 @@
+extends layout
+
+block content
+  div(class='main')
+    h3=board_name
+    br
+    div(class="form-control", type="text", style="height:auto; margin-bottom : 15px")
+        div(name="title", style="font-weight: bold; font-size: 105%; color:black")=readdata.title
+        div(style="text-align: right; font-size: 85%; color:black")
+            -if(readdata.time_update)
+                div #{readdata.writer} | #{readdata.time_update} (수정됨)
+            -else    
+                div #{readdata.writer} | #{readdata.time}
+    div(name="contents", class="form-control", style="height:auto; color:black; margin-bottom : 15px; min-height : 400px")
+        span !{readdata.contents}
+    -if(loginid)
+        -if(loginid.id == readdata.writer_id)
+            div(style=" margin-bottom : 15px")
+                span
+                    a(href='/#{board_address}/update/#{readdata.no}', class="btn btn-default") 글 수정
+                span
+                    form(action='/#{board_address}/delete', method="post", style="display: inline; float: right;")
+                        input(type='hidden', name='no', value='#{readdata.no}')
+                        button(class="btn btn-default", type="submit", onclick="return confirm('정말 삭제하시겠습니까?')") 글 삭제
+    div(class="list-group commentstyle", style="margin-bottom : 5px; overflow: hidden; padding-bottom:10px;")
+        -for(let i = 0; i < commentdata.length && i < comment_page * 10; i++)
+            if(commentdata[i].class == 1)
+                li(class='list-group-item list-group-item-primary', style="width:95%; float: right; z-index:1; background-color: rgba(248, 248, 248);")
+                    div(style="margin-bottom : 6px; border-bottom: solid 1px gray")
+                        span &nbsp;#{commentdata[i].writer}
+                        span(style="display: inline; float: right;")
+                            if(loginid)
+                                if(commentdata[i].writer_id == loginid.id)
+                                    form(action='/#{board_address}/delete_c_comment', method="post")
+                                        input(type='hidden', name='no', value='#{readdata.no}')
+                                        input(type='hidden', name='c_comment_id', value='#{commentdata[i].id}')
+                                        input(type='hidden', name='c_comment_writer_id', value='#{commentdata[i].writer_id}')
+                                        button(class="x_btn", type="submit", onclick="return confirm('정말 삭제하시겠습니까?')")
+                        span(style="display: inline; float: right;") #{commentdata[i].time}&nbsp;
+                    div=commentdata[i].contents
+            else
+                if(loginid)
+                    li(class='list-group-item list-group-item-primary hover_curser', style="float: left; width:100%; z-index:2;", onclick="onoff_c_comment('comment_#{i}')")
+                        div(style="margin-bottom : 6px; border-bottom: solid 1px gray;")
+                            span &nbsp;#{commentdata[i].writer}
+                            span(style="display: inline; float: right;")
+                                if(commentdata[i].writer_id == loginid.id)
+                                    form(action='/#{board_address}/deletecomment', method="post")
+                                        input(type='hidden', name='no', value='#{readdata.no}')
+                                        input(type='hidden', name='commentid', value='#{commentdata[i].id}')
+                                        input(type='hidden', name='writer_id', value='#{commentdata[i].writer_id}')
+                                        button(class="x_btn", type="submit", onclick="return confirm('정말 삭제하시겠습니까?')")
+                            span(style="display: inline; float: right;") #{commentdata[i].time}&nbsp;
+                        div &nbsp;#{commentdata[i].contents}
+                    li(id='comment_#{i}', class='list-group-item list-group-item-primary', style="display:none; width:95%; float: right; z-index:2; background-color: rgba(248, 248, 248);")
+                        form(action='/#{board_address}/comment_comment', method="post")
+                            input(type='hidden', name='no', value='#{readdata.no}')
+                            input(type='hidden', name='target', value='#{commentdata[i].id}')
+                            input(type="text", name="comment_comment", class="form-control", placeholder="대댓글을 입력해주세요", ,  required)
+                else 
+                    li(class='list-group-item list-group-item-primary', style="float: left; width:100%; z-index:2;")
+                        div(style="margin-bottom : 6px; border-bottom: solid 1px gray;")
+                            span &nbsp;#{commentdata[i].writer}
+                            span(style="display: inline; float: right;") #{commentdata[i].time}&nbsp;
+                        div &nbsp;#{commentdata[i].contents}
+    span(style="display:flex; justify-content:center")
+        -for (let i = 0; i < readdata.commentnumber/10; i++)
+            form(action='/#{board_address}/read/#{readdata.no}', method="post", style="display:inline;")
+                -if(comment_page == i+1)
+                    input(type="submit", name='comment_page', class='pagebutton', style='font-weight: bold;', value='#{i+1}')
+                -else
+                    input(type="submit", name='comment_page', class='pagebutton', value='#{i+1}')
+    if(loginid)
+        if(loginid.class == 1)
+            li(class='list-group-item list-group-item-primary', style="margin-top:10px;")
+                form(action='/#{board_address}/comment', method='post')
+                    div(class="input-group", style="width:100%;")
+                        input(type='hidden', name='no', value='#{readdata.no}')
+                        input(type="text", name="comment", class="form-control", placeholder="댓글을 입력해주세요", required)
+    script.
+        function onoff_c_comment(id) {
+            if(document.getElementById(id).style.display == "none"){
+                document.getElementById(id).style.display ="";
+            } else {
+                document.getElementById(id).style.display ="none";
+            }
+        }

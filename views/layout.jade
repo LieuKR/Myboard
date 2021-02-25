@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title= pageinfo
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js") 
+    script(src="/javascripts/bootstrap/bootstrap.js") 
+    script(src='/javascripts/socketIO/socket.io.js')
+  body
+    nav(class="navbar navbar-default", style="margin-bottom:0;")
+      div(class="container-fluid")
+        div(class="navbar-header")
+          a(class="navbar-brand" href="/")
+            img(alt="myboard", src="/images/myboard.png")
+        div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
+          ul(class="nav navbar-nav")
+            li
+              a(href="/board_1/list/1") 제 1 게시판
+            li
+              a(href="/board_2/list/1") 제 2 게시판
+            li
+              a(href="/board_3/list/1") 제 3 게시판
+          ul(class="nav navbar-nav navbar-right")
+            -if(loginid)
+              li
+                a(href="/users/myinfo") 내 정보
+              li
+                a(href="/users/logout") 로그아웃
+            -else
+              li
+                a(href="/users/sign_up") 회원가입
+              li
+                a(href="/users/login") 로그인
+    -if(greenalert)
+      div(class="alert alert-success alert-dismissible", role="alert")=greenalert
+        button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+          span(aria-hidden="true") &times;
+    -if(yellowalert)
+      div(class="alert alert-warning alert-dismissible", role="alert")=yellowalert
+        button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+          span(aria-hidden="true") &times;
+    block content

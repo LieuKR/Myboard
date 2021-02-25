@@ -1,0 +1,21 @@
+extends layout
+block content
+  div(class='main')
+    h3 이메일 변경
+    p 현재 이메일 주소는 #{loginid.email}입니다.
+    div 이메일 주소를 수정하시려면 비밀번호와 바꿀 이메일 주소를 입력해주세요.
+    div 수정 후 이메일 인증을 다시 하여야 합니다.
+    br
+    form(action='/users/mail_change', method='post')
+        div(class="input-group sizing-form1")
+            label(for="inputName") 비밀번호
+            input(type="password", name="password", class="form-control", placeholder="현재 비밀번호를 입력해 주세요", maxlength=25, required)
+        p
+        div(class="input-group sizing-form1")
+            label(for="inputName") 이메일 주소
+            input(id='Emailinputed', type="text", name="mail_change", class="form-control", placeholder="변경할 이메일 주소를 입력해 주세요", maxlength=40, required)
+        div(id='checknotice', class='checknotice')
+        br
+        span(class="input-group-btn")
+            button(id='sign_submit_button', class="btn btn-default", type="submit", disabled=true, required) 전송
+    script(src="/javascripts/mail_check.js")

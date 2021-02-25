@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div(class='main')
+    h3 Homepage
+    -if(loginid)
+      -if(loginid.class == 0)
+        div #{loginid.name}님, 이메일 인증이 필요합니다.
+        br
+        a(href='/users/email') 이메일 인증하기
+        br
+        a(href='/users/mail_change') 이메일 수정하기
+      -if(loginid.class == 1)
+        div #{loginid.name}님, 반갑습니다!
+    -else
+        p 서비스를 이용하기 위해서는 로그인이 필요합니다.

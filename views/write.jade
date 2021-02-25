@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  link(rel="stylesheet" href="/stylesheets/summernote/summernote-lite.css")
+  script(src="/javascripts/summernote/summernote-lite.js")
+  script(src="/javascripts/summernote/lang/summernote-ko-KR.js")
+  script(src="/javascripts/sunnernote_setting.js")
+  div(class='main')
+    h3=board_name
+    br
+    div
+      form(action='/#{board_address}/write', method="post", onsubmit='testfunction()')
+        div(class="input-group", style="width:100%;")
+          span(class="input-group-addon", style="width:100px;") 제목
+          input(type="text", name="title", class="form-control", placeholder="글 제목을 입력해 주세요.", maxlength="30", required)
+        br
+        textarea(id="summernote", name="contents", required)
+        input(type='hidden', id='contents_plain', name='contents_plain', value='')
+        br
+        span(class="input-group-btn")
+          button(class="btn btn-default", id='sign_submit_button', type="submit", style="float: right;") 전송

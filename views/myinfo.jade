@@ -1,0 +1,18 @@
+extends layout
+block content
+  div(class='main')
+    h3 내 정보
+    div 아이디 : #{loginid.id}
+    div 닉네임 : #{loginid.name}
+    -if(loginid)
+      -if(loginid.class == 0)
+        br
+        div 이메일 인증이 되지 않았습니다!
+        a(href='/users/email') 이메일 인증하기
+    div
+        br
+        a(href='/users/name_change') 닉네임 변경하기
+    div
+        a(href='/users/password_change') 비밀번호 변경하기
+    div
+        a(href='/users/mail_change') 이메일 주소 변경하기

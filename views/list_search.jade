@@ -1,0 +1,48 @@
+extends layout
+block content
+  div(class='main')
+    h3=board_name
+    if(list[0])
+        table(class='table table-hover table-condensed')
+            thead
+                tr
+                    th(style="text-align: center; width: 100px") 번호
+                    th(style="text-align: center; width: 500px") 제목
+                    th(style="text-align: center; width: 100px") 글쓴이
+                    th(style="text-align: center; width: 90px") 날짜
+                    th(style="text-align: center; width: 60px") 조회수
+            tbody
+                -for (let i = (page-1) * 15 ; i < Math.min(list.length, (page)*15); i++)
+                    tr
+                        td(class='board_list', style="text-align: center; width: 100px") #{list[i].no}
+                        td(class='board_list', style='width: 500px; color:black; display: block;')
+                            a(href='/#{board_address}/read/#{list[i].no}', style='color:black;') #{list[i].title}
+                                -if (list[i].commentnumber !== 0)
+                                    sub [#{list[i].commentnumber}]
+                        td(class='board_list', style="text-align: center; width: 100px ") #{list[i].writer}
+                        td(class='board_list', style="text-align: center; width: 90px") #{list[i].time}
+                        td(class='board_list', style="text-align: center; width: 60px") #{list[i].readnumber}
+    else
+        div(style='text-align: center; margin : 40px') 검색결과가 없습니다
+    form(action='/#{board_address}/search/1', method='get', style="text-align:center;")
+        select(name='search_type', class="form-control", style="width: 110px; display: inline;")
+                option(value='title&contents') 제목, 내용
+                option(value='title') 제목
+                option(value='contents') 내용
+                option(value='writer') 글쓴이
+        span
+            input(type="text", class="form-control", name='keyword', required , style="width: 230px; display: inline;")
+        button(type="submit" class="form-control" style="width: 60px; display: inline;") 검색
+    br
+    div(style="text-align:center;")
+        ul(class="pagination", style="margin: 0")
+            li
+                a(onclick=`window.location='/${board_address}/search/${Math.max(page - 5 , 1)}'+window.location.search;` , aria-label="Previous", style="cursor:pointer")
+                    span(aria-hidden="true") &laquo;
+            -for (let i = Math.max(page - 4 , 1); i < maxpage + 1 && i < Math.max(page - 5 , 1) + 10; i++)
+                li
+                    a(onclick="window.location='/#{board_address}/search/#{i}'+window.location.search;", style="cursor:pointer")=i
+            li
+                a(onclick=`window.location='/${board_address}/search/${Math.min(maxpage , page + 5)}'+window.location.search;`, aria-label="Next", style="cursor:pointer")
+                    span(aria-hidden="true") &raquo;
+    a(href='/#{board_address}/write', class="btn btn-default", style="float: right; z-index:1;") 글 쓰기

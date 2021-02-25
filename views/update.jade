@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  link(rel="stylesheet" href="/stylesheets/summernote/summernote-lite.css")
+  script(src="/javascripts/summernote/summernote-lite.js")
+  script(src="/javascripts/summernote/lang/summernote-ko-KR.js")
+  script(src="/javascripts/sunnernote_setting.js")
+  div(class='main')
+    h3=board_name
+    br
+    form(action='/#{board_address}/update/#{readdata.no}', method="post", onsubmit='testfunction()')
+      div(class="input-group", style="width:100%;")
+        span(class="input-group-addon", style="width:100px;") 제목
+        input(type="text", name="title", class="form-control", value="#{readdata.title}", required)
+      br
+      textarea(id="summernote", name="contents", required)
+        span !{readdata.contents}
+      input(type='hidden', id='contents_plain', name='contents_plain', value='')
+      br
+      span(class="input-group-btn")
+        button(class="btn btn-default", id='sign_submit_button', type="submit", disabled=false) 전송

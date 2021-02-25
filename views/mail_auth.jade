@@ -1,0 +1,17 @@
+extends layout
+block content
+    div(class='main')
+        form(action='/users/email', method='post', class="login_form")
+            h3 이메일 인증
+            div(class="input-group sizing-form1")
+                label(for="inputName") 인증번호
+                input(type="text", name="authnumber", class="form-control", placeholder="메일로 전송된 인증번호를 입력해 주세요", required)
+            p
+            span(class="input-group-btn")
+                button(class="btn btn-default", id='sign_submit_button', type="submit") 전송
+            p
+            br
+            br
+            br
+            span(class="input-group-btn")
+                a(href="/users/email/sendmail", class="btn btn-default", type="button") 인증번호 재전송

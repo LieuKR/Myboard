@@ -1,0 +1,13 @@
+extends layout
+block content
+  div(class='main')
+    h3 닉네임 변경
+    p 현재 닉네임은 #{loginid.name}입니다.
+    form(action='/users/name_change', method='post')
+        div(class="input-group sizing-form1")
+            input(id='Nameinputed', type="text", name="name_change", class="form-control", placeholder="변경할 닉네임을 입력해 주세요", maxlength=40, required)
+        div(id='checknotice')
+        p
+        span(class="input-group-btn")
+            button(id='sign_submit_button', class="btn btn-default", type="submit", disabled=true, required) 전송
+    script(src="/javascripts/name_check.js")
