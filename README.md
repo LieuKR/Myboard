@@ -1,6 +1,7 @@
 # Myboard
 AWS EC2로 구동되는 node.js 게시판 서버입니다.
 [게시판 주소](http://ec2-13-125-250-131.ap-northeast-2.compute.amazonaws.com/)
+이 Node.js 앱을 구동하는데에 AWS의 비밀 키, 이메일 아이디, 비밀번호 등 개인정보가 필요하기 때문에 이 github repository는 작동하지 않습니다.
 
 ## 구동 원리
 AWS EC2로 node.js로 구성된 게시판 서버를 동작시킵니다.
