@@ -1,0 +1,10 @@
+{
+    "host": "myboard.SECRETHOST",
+    "port": 3306,
+    "user": "SECRETUSER",
+    "password": "SECRETPASSWORD",
+    "db_main": "myboard",
+    "db_board_1": "myboard_board_1",
+    "db_board_2": "myboard_board_2",
+    "db_board_3": "myboard_board_3"
+}

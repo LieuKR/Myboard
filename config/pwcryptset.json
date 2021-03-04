@@ -1,0 +1,6 @@
+{
+    "salt": "SECRETSALT",
+    "runnum": "SECRETRUNNUMBER",
+    "byte": 64,
+    "method": "SECRETMETHOD"
+}

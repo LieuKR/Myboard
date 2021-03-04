@@ -1,0 +1,9 @@
+{
+    "service": "gmail",
+    "host": "smtp.gmail.com",
+    "secure": true,
+    "auth": {
+      "user": "SECRETUSER",
+      "pass": "SECRETPASSWORD"
+    }
+}

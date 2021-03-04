@@ -1,0 +1,16 @@
+{   
+    "secret" : "secretcode172",
+    "storeset" : {
+        "host": "myboard.SECRETHOST",
+        "port": 3306,
+        "user": "SECRETUSER",
+        "password": "SECRETPASSWORD",
+        "database": "myboard",
+        "clearExpired": true,
+        "checkExpirationInterval" : 100000
+    },
+    "cookieset" : {
+        "maxAge": 3600000,
+        "secure": false
+    }
+}
