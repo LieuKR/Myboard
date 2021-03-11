@@ -22,13 +22,10 @@ Summernote의 이미지 업로드 기능을 Multer-s3 모듈과 결합하여 AWS
 
 ### DB 구성
 데이터베이스는 다음과 같이 구성되었습니다.
-  DB
-    - myboard
-        -  sessions (세션 테이블)
-        -  users (유저정보 테이블)
-    - myboard_board_n
-        -  board (글 내용 테이블)
-        -  comments (댓글 테이블)
+myboard - sessions (세션 테이블)
+myboard - users (유저정보 테이블)
+myboard_board_n - board (글 내용 테이블)
+myboard_board_n - comments (댓글 테이블)
 새로운 게시판을 만들기 위해서는 스키마를 복제해 연결해주어야 합니다.
 
 ### 프론트 사이드
