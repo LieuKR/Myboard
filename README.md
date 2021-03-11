@@ -5,8 +5,22 @@ AWS EC2로 구동되는 node.js 게시판 서버입니다.
 
 이 Node.js로 작성된 웹 앱을 구동하는데에는 AWS의 비밀 키, 이메일 아이디, 비밀번호 등의 비밀 데이터가 필요하기 때문에 이 github repository는 정상적으로 작동하지 않습니다.
 
-## 구동 원리
-AWS EC2로 node.js로 구성된 게시판 웹 앱을 동작시킵니다.<br>
+### 사용된 기술
+포트폴리오를 작성하는데 사용된 기술들입니다.
+
+- 언어
+  - JavaScript
+  - 템플릿 엔진 : pug
+- 프레임워크
+  - Node.js Express
+  - Bootstrap
+- DB
+  - Mysql
+- AWS
+  - AWS EC2, AWS RDS, AWS S3
+
+### 구동 원리
+AWS EC2를 활용하여 node.js로 구성된 게시판 웹 앱을 동작시킵니다.<br>
 사용되는 데이터베이스는 AWS RDS로 작동하는 MySQL DB이며, 이미지 파일 처리를 위해 따로 AWS S3 스토리지를 사용하고 있습니다.
 
 ### 회원 관리
